@@ -171,6 +171,17 @@ class BatteryTestConsoleApp {
             document.addPage(page);
 
             try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                // Software version
+                String softwareVersion = "BatteryCheck Pro Version 1.2";
+                contentStream.setFont(PDType1Font.HELVETICA, 10);
+                contentStream.setNonStrokingColor(Color.GRAY);
+                contentStream.beginText();
+                float titleWidth = PDType1Font.HELVETICA.getStringWidth(softwareVersion) / 1000 * 10;
+                float startX = (page.getMediaBox().getWidth() - titleWidth) / 2;
+                contentStream.newLineAtOffset(startX, 800);
+                contentStream.showText(softwareVersion);
+                contentStream.endText();
+
                 // Titel
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 18);
                 contentStream.setNonStrokingColor(testPassed ? Color.GREEN : Color.RED);
